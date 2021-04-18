@@ -26,13 +26,13 @@ public class ConditionMatcher {
   }
 
   private boolean matchSource() {
-    List<Group> groups = extractGroups(keyStoreManager.getGroup(condition.getSourceGroupId()).get());
-    System.out.println(groups);
+    List<Group> groups = extractGroups(keyStoreManager.getGroup(condition.getSourceGroupId()));
     return groups.stream().anyMatch(g -> groupHasAddress(g, datagram.getSourceAddress()));
   }
 
   private boolean matchDestination() {
-    List<Group> groups = extractGroups(keyStoreManager.getGroup(condition.getDestGroupId()).get());
+    List<Group> groups = extractGroups(keyStoreManager.getGroup(condition.getDestGroupId()));
+
     return groups.stream().anyMatch(g -> groupHasAddress(g, datagram.getDestinationAddress()));
   }
 
@@ -44,16 +44,17 @@ public class ConditionMatcher {
 
   private List<Group> extractGroupsIds(Group group, List<Group> groupsList) {
     groupsList.add(group);
-    List<Group> foundGroups = keyStoreManager.getGroup(group.getId()).get().getGroups();
+    List<Group> foundGroups = keyStoreManager.getGroup(group.getId()).getGroups();
     groupsList.addAll(foundGroups);
     foundGroups.forEach(g -> extractGroupsIds(g, groupsList));
     return groupsList;
   }
 
   private boolean groupHasAddress(Group group, String address) {
-    List<Network> networkNamesList = keyStoreManager.getGroup(group.getId()).get().getNetworks();
-    return networkNamesList.stream()
-            .anyMatch(netName -> networkHasAddress(netName, address));
+    List<Network> networksList = group.getNetworks();
+    List<Host> hostsList = group.getHosts();
+    return networksList.stream().anyMatch(netName -> networkHasAddress(netName, address)) ||
+            hostsList.stream().anyMatch(host -> hostHasAddress(host, address));
   }
 
   private boolean networkHasAddress(Network network, String address) {
@@ -70,5 +71,14 @@ public class ConditionMatcher {
 
   private boolean matchFlag() {
     return datagram.getFlags().contains(condition.getFlag());
+  }
+
+  @Override
+  public String toString() {
+    return "ConditionMatcher{" +
+            "keyStoreManager=" + keyStoreManager +
+            ", condition=" + condition +
+            ", datagram=" + datagram +
+            '}';
   }
 }

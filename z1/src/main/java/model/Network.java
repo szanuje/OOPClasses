@@ -5,45 +5,35 @@ import java.util.Set;
 
 public class Network {
 
-  private final String netID;
-  private final Integer networkPrefixLength;
-  private final String netName;
-  private final Set<Host> hosts;
+    private final String netID;
+    private final Integer networkPrefixLength;
+    private final String netName;
+    private final Set<Host> hosts;
 
-  public Network(String netID, Integer networkPrefixLength, String netName) {
-    this.netID = netID;
-    this.networkPrefixLength = networkPrefixLength;
-    this.netName = netName;
-    this.hosts = new HashSet<>();
-  }
+    public Network(String netID, Integer networkPrefixLength, String netName) {
+        this.netID = netID;
+        this.networkPrefixLength = networkPrefixLength;
+        this.netName = netName;
+        this.hosts = new HashSet<>();
+    }
 
-  public String getNetID() {
-    return netID;
-  }
+    public String getNetID() {
+        return netID;
+    }
 
-  public Integer getNetworkPrefixLength() {
-    return networkPrefixLength;
-  }
+    public Integer getNetworkPrefixLength() {
+        return networkPrefixLength;
+    }
 
-  public String getNetName() {
-    return netName;
-  }
+    public String getNetName() {
+        return netName;
+    }
 
-  public void addHost(Host host) {
-    hosts.add(host);
-  }
+    public void addHost(Host host) {
+        hosts.add(host);
+    }
 
-  public Set<Host> getHosts() {
-    return hosts;
-  }
-
-  @Override
-  public String toString() {
-    return "model.Network{" +
-            "netID='" + netID + '\'' +
-            ", networkPrefixLength='" + networkPrefixLength + '\'' +
-            ", netName='" + netName + '\'' +
-            ", hosts=" + hosts +
-            '}';
-  }
+    public Set<Host> getHosts() {
+        return hosts;
+    }
 }

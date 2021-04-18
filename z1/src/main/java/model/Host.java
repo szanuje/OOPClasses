@@ -2,27 +2,19 @@ package model;
 
 public class Host {
 
-  private final String hostAddress;
-  private final String hostName;
+    private final String hostAddress;
+    private final String hostName;
 
-  public Host(String hostAddress, String hostName) {
-    this.hostAddress = hostAddress;
-    this.hostName = hostName;
-  }
+    public Host(String hostAddress, String hostName) {
+        this.hostAddress = hostAddress;
+        this.hostName = hostName;
+    }
 
-  public String getHostAddress() {
-    return hostAddress;
-  }
+    public String getHostAddress() {
+        return hostAddress;
+    }
 
-  public String getHostName() {
-    return hostName;
-  }
-
-  @Override
-  public String toString() {
-    return "model.Host{" +
-            "hostAddress='" + hostAddress + '\'' +
-            ", hostName='" + hostName + '\'' +
-            '}';
-  }
+    public String getHostName() {
+        return hostName;
+    }
 }

@@ -38,6 +38,17 @@ public class DefaultCondition implements ACLi.Condition {
   }
 
   @Override
+  public String toString() {
+    return "DefaultCondition{" +
+            "sourceGroupId=" + sourceGroupId +
+            ", destGroupId=" + destGroupId +
+            ", protocol=" + protocol +
+            ", flag=" + flag +
+            ", keyStoreManager=" + keyStoreManager +
+            '}';
+  }
+
+  @Override
   public boolean match(Datagram datagram) {
     return new ConditionMatcher(keyStoreManager, this, datagram).match();
   }

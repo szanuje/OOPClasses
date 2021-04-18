@@ -2,12 +2,12 @@ package utils;
 
 public class GroupIDGenerator {
 
-  private static Integer number = 0;
+    private static Integer number = 0;
 
-  private GroupIDGenerator() {
-  }
+    private GroupIDGenerator() {
+    }
 
-  public static Integer getNewGroupID() {
-    return number++;
-  }
+    public static Integer getNewGroupID() {
+        return number++;
+    }
 }

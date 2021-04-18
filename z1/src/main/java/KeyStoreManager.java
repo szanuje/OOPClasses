@@ -24,7 +24,7 @@ public class KeyStoreManager {
     hostKeyStore.insert(hostName, host);
   }
 
-  public Optional<Host> getHost(String hostName) {
+  public Host getHost(String hostName) {
     return hostKeyStore.get(hostName);
   }
 
@@ -32,7 +32,7 @@ public class KeyStoreManager {
     networkKeyStore.insert(netName, net);
   }
 
-  public Optional<Network> getNet(String netName) {
+  public Network getNet(String netName) {
     return networkKeyStore.get(netName);
   }
 
@@ -40,7 +40,7 @@ public class KeyStoreManager {
     groupKeyStore.insert(groupID, group);
   }
 
-  public Optional<Group> getGroup(Integer groupID) {
+  public Group getGroup(Integer groupID) {
     return groupKeyStore.get(groupID);
   }
 
