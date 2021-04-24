@@ -4,43 +4,37 @@ import interfaces.ACLi;
 import interfaces.Datagram;
 import keystore.KeyStoreManager;
 
-import java.util.Set;
-
 public class DefaultCondition implements ACLi.Condition {
 
 
-    private final Set<Integer> sourceGroupsIds;
-    private final Set<Integer> destGroupsIds;
+    private final Integer sourceGroupId;
+    private final Integer destGroupId;
     private final Datagram.Protocol protocol;
-    private final Set<Datagram.Flag> flags;
+    private final Datagram.Flag flag;
     private final KeyStoreManager keyStoreManager;
 
-    protected DefaultCondition(Set<Integer> sourceGroupsIds,
-                                Set<Integer> destGroupsIds,
-                                Datagram.Protocol protocol,
-                                Set<Datagram.Flag> flags,
-                                KeyStoreManager keyStoreManager) {
-        this.sourceGroupsIds = sourceGroupsIds;
-        this.destGroupsIds = destGroupsIds;
+    public DefaultCondition(Integer sourceGroupId, Integer destGroupId, Datagram.Protocol protocol, Datagram.Flag flag, KeyStoreManager keyStoreManager) {
+        this.sourceGroupId = sourceGroupId;
+        this.destGroupId = destGroupId;
         this.protocol = protocol;
-        this.flags = flags;
+        this.flag = flag;
         this.keyStoreManager = keyStoreManager;
     }
 
-    public Set<Integer> getSourceGroupsIds() {
-        return sourceGroupsIds;
+    public Integer getSourceGroupId() {
+        return sourceGroupId;
     }
 
-    public Set<Integer> getDestGroupsIds() {
-        return destGroupsIds;
+    public Integer getDestGroupId() {
+        return destGroupId;
     }
 
     public Datagram.Protocol getProtocol() {
         return protocol;
     }
 
-    public Set<Datagram.Flag> getFlags() {
-        return flags;
+    public Datagram.Flag getFlag() {
+        return flag;
     }
 
     public KeyStoreManager getKeyStoreManager() {

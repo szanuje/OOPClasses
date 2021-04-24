@@ -29,20 +29,13 @@ public class ConditionMatcher {
     }
 
     private boolean matchSource() {
-        List<Group> groups = new ArrayList<>();
-        condition.getSourceGroupsIds().forEach(group ->
-                groups.addAll(
-                        extractGroups(keyStoreManager.getGroup(group)))
-        );
+        List<Group> groups = extractGroups(keyStoreManager.getGroup(condition.getSourceGroupId()));
         return groups.stream().anyMatch(g -> groupHasAddress(g, datagram.getSourceAddress()));
     }
 
     private boolean matchDestination() {
-        List<Group> groups = new ArrayList<>();
-        condition.getDestGroupsIds().forEach(group ->
-                groups.addAll(
-                        extractGroups(keyStoreManager.getGroup(group)))
-        );
+        List<Group> groups = extractGroups(keyStoreManager.getGroup(condition.getDestGroupId()));
+
         return groups.stream().anyMatch(g -> groupHasAddress(g, datagram.getDestinationAddress()));
     }
 
@@ -82,6 +75,6 @@ public class ConditionMatcher {
     }
 
     private boolean matchFlag() {
-        return datagram.getFlags().containsAll(condition.getFlags());
+        return datagram.getFlags().contains(condition.getFlag());
     }
 }

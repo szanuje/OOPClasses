@@ -6,16 +6,20 @@ import model.AccessControlList;
 import model.Group;
 import model.Host;
 import model.Network;
-import utils.GroupIDGenerator;
+import utils.IDGenerator;
 
 public class ACL implements ACLi {
 
     private final KeyStoreManager keyStoreManager;
     private final ConditionFactory conditionFactory;
+    private final IDGenerator groupIDGenerator;
+    private final IDGenerator aclIDGenerator;
 
     public ACL() {
         this.keyStoreManager = new KeyStoreManager();
         this.conditionFactory = new ConditionFactory();
+        this.groupIDGenerator = new IDGenerator();
+        this.aclIDGenerator = new IDGenerator();
     }
 
     @Override
@@ -30,7 +34,7 @@ public class ACL implements ACLi {
 
     @Override
     public Integer createNewGroup() {
-        Integer groupID = GroupIDGenerator.getNewGroupID();
+        Integer groupID = groupIDGenerator.getNewGroupID();
         keyStoreManager.addGroup(groupID, new Group(groupID));
         return groupID;
     }
@@ -73,17 +77,23 @@ public class ACL implements ACLi {
 
     @Override
     public Integer createACL() {
-        return null;
+        Integer aclID = groupIDGenerator.getNewGroupID();
+        keyStoreManager.addAccessControlList(aclID, new AccessControlList(aclID));
+        return aclID;
     }
 
     @Override
     public void addConditionToACL(Integer aclID, Integer lineNumber, Condition condition, Result result) {
-        keyStoreManager.addAccessControlList(aclID, new AccessControlList(aclID, lineNumber, condition, result));
+        AccessControlList acl = keyStoreManager.getAccessControlList(aclID);
+        acl.setLineNumber(lineNumber);
+        acl.setCondition(condition);
+        acl.setResult(result);
     }
 
     @Override
     public Result test(Integer aclID, Datagram datagram) {
-        return null;
+        AccessControlList acl = keyStoreManager.getAccessControlList(aclID);
+        return ACLVerifier.verify(acl, datagram);
     }
 
 }

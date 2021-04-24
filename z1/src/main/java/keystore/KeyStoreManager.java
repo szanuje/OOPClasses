@@ -21,6 +21,7 @@ public class KeyStoreManager {
 
     public void addHost(String hostName, Host host) {
         hostKeyStore.insert(hostName, host);
+        notifyNetworkObservers(host);
     }
 
     public Host getHost(String hostName) {
@@ -29,6 +30,7 @@ public class KeyStoreManager {
 
     public void addNet(String netName, Network net) {
         networkKeyStore.insert(netName, net);
+        hostKeyStore.getAll().values().forEach(net::update);
     }
 
     public Network getNet(String netName) {
@@ -49,6 +51,10 @@ public class KeyStoreManager {
 
     public AccessControlList getAccessControlList(Integer aclID) {
         return accessControlListKeyStore.get(aclID);
+    }
+
+    public void notifyNetworkObservers(Host host) {
+        networkKeyStore.getAll().values().forEach(net -> net.update(host));
     }
 
 }

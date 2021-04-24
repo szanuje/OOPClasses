@@ -20,4 +20,8 @@ public class AbstractKeyStore<K, V> implements KeyStore<K, V> {
     public void insert(K key, V val) {
         map.putIfAbsent(key, val);
     }
+
+    public Map<K, V> getAll() {
+        return map;
+    }
 }

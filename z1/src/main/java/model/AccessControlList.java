@@ -5,15 +5,12 @@ import interfaces.ACLi;
 public class AccessControlList {
 
     private final Integer aclID;
-    private final Integer lineNumber;
-    private final ACLi.Condition condition;
-    private final ACLi.Result result;
+    private Integer lineNumber;
+    private ACLi.Condition condition;
+    private ACLi.Result result;
 
-    public AccessControlList(Integer aclID, Integer lineNumber, ACLi.Condition condition, ACLi.Result result) {
+    public AccessControlList(Integer aclID) {
         this.aclID = aclID;
-        this.lineNumber = lineNumber;
-        this.condition = condition;
-        this.result = result;
     }
 
     public Integer getAclID() {
@@ -24,11 +21,23 @@ public class AccessControlList {
         return lineNumber;
     }
 
+    public void setLineNumber(Integer lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
     public ACLi.Condition getCondition() {
         return condition;
     }
 
+    public void setCondition(ACLi.Condition condition) {
+        this.condition = condition;
+    }
+
     public ACLi.Result getResult() {
         return result;
+    }
+
+    public void setResult(ACLi.Result result) {
+        this.result = result;
     }
 }
