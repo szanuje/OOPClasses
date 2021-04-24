@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Host {
 
     private final String hostAddress;
@@ -16,5 +18,18 @@ public class Host {
 
     public String getHostName() {
         return hostName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Host host = (Host) o;
+        return Objects.equals(hostAddress, host.hostAddress) && Objects.equals(hostName, host.hostName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hostAddress, hostName);
     }
 }

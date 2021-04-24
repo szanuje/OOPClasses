@@ -1,7 +1,11 @@
 package model;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Network implements NetworkObserver {
 
@@ -31,17 +35,18 @@ public class Network implements NetworkObserver {
 
     @Override
     public void update(Host host) {
-        String hostAddress = host.getHostAddress();
-        int octet = 0;
-        for (int i = 0; i < hostAddress.length(); i++) {
-            if(i % 4 == 0) {
-                octet++;
-                if (octet >= networkPrefixLength) {
-                    hosts.add(host);
-                    return;
-                }
+        List<Integer> hostAddress = Arrays.stream(host.getHostAddress().split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Integer> netAddress = Arrays.stream(netID.split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
+        int prefix = 0;
+        if (networkPrefixLength == 8) prefix = 1;
+        if (networkPrefixLength == 16) prefix = 2;
+        if (networkPrefixLength == 24) prefix = 3;
+        for (int i = 0; i < 4; i++) {
+            if (!hostAddress.get(i).equals(netAddress.get(i))) {
+                return;
             }
-            if (hostAddress.charAt(i) != netID.charAt(i)) {
+            if (i + 1 >= prefix) {
+                hosts.add(host);
                 return;
             }
         }
@@ -49,5 +54,18 @@ public class Network implements NetworkObserver {
 
     public Set<Host> getHosts() {
         return hosts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Network network = (Network) o;
+        return Objects.equals(netID, network.netID) && Objects.equals(networkPrefixLength, network.networkPrefixLength) && Objects.equals(netName, network.netName) && Objects.equals(hosts, network.hosts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(netID, networkPrefixLength, netName, hosts);
     }
 }

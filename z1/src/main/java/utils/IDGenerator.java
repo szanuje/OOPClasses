@@ -8,7 +8,7 @@ public class IDGenerator {
         number = 0;
     }
 
-    public Integer getNewGroupID() {
+    public Integer getNewID() {
         return number++;
     }
 }

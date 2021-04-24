@@ -34,7 +34,7 @@ public class ACL implements ACLi {
 
     @Override
     public Integer createNewGroup() {
-        Integer groupID = groupIDGenerator.getNewGroupID();
+        Integer groupID = groupIDGenerator.getNewID();
         keyStoreManager.addGroup(groupID, new Group(groupID));
         return groupID;
     }
@@ -77,7 +77,7 @@ public class ACL implements ACLi {
 
     @Override
     public Integer createACL() {
-        Integer aclID = groupIDGenerator.getNewGroupID();
+        Integer aclID = aclIDGenerator.getNewID();
         keyStoreManager.addAccessControlList(aclID, new AccessControlList(aclID));
         return aclID;
     }
@@ -96,4 +96,7 @@ public class ACL implements ACLi {
         return ACLVerifier.verify(acl, datagram);
     }
 
+    public KeyStoreManager getKeyStoreManager() {
+        return keyStoreManager;
+    }
 }

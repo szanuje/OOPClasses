@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Group {
 
@@ -43,5 +44,18 @@ public class Group {
 
     public List<Group> getGroups() {
         return groups;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group group = (Group) o;
+        return Objects.equals(id, group.id) && Objects.equals(networks, group.networks) && Objects.equals(hosts, group.hosts) && Objects.equals(groups, group.groups);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, networks, hosts, groups);
     }
 }

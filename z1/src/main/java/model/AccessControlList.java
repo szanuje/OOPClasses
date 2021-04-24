@@ -2,6 +2,8 @@ package model;
 
 import interfaces.ACLi;
 
+import java.util.Objects;
+
 public class AccessControlList {
 
     private final Integer aclID;
@@ -39,5 +41,18 @@ public class AccessControlList {
 
     public void setResult(ACLi.Result result) {
         this.result = result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccessControlList that = (AccessControlList) o;
+        return Objects.equals(aclID, that.aclID) && Objects.equals(lineNumber, that.lineNumber) && Objects.equals(condition, that.condition) && result == that.result;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aclID, lineNumber, condition, result);
     }
 }
