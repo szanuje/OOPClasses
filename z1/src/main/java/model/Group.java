@@ -27,7 +27,7 @@ public class Group {
     }
 
     public List<Network> getNetworks() {
-        return networks;
+        return new ArrayList<>(networks);
     }
 
     public void addHost(Host host) {
@@ -35,7 +35,7 @@ public class Group {
     }
 
     public List<Host> getHosts() {
-        return hosts;
+        return new ArrayList<>(hosts);
     }
 
     public void addGroup(Group group) {
@@ -43,7 +43,7 @@ public class Group {
     }
 
     public List<Group> getGroups() {
-        return groups;
+        return new ArrayList<>(groups);
     }
 
     @Override

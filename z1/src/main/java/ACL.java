@@ -2,6 +2,7 @@ import condition.ConditionFactory;
 import interfaces.ACLi;
 import interfaces.Datagram;
 import keystore.KeyStoreManager;
+import model.ACLLine;
 import model.AccessControlList;
 import model.Group;
 import model.Host;
@@ -85,9 +86,7 @@ public class ACL implements ACLi {
     @Override
     public void addConditionToACL(Integer aclID, Integer lineNumber, Condition condition, Result result) {
         AccessControlList acl = keyStoreManager.getAccessControlList(aclID);
-        acl.setLineNumber(lineNumber);
-        acl.setCondition(condition);
-        acl.setResult(result);
+        acl.addLine(new ACLLine(lineNumber, condition, result));
     }
 
     @Override

@@ -1,46 +1,31 @@
 package model;
 
-import interfaces.ACLi;
-
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class AccessControlList {
 
     private final Integer aclID;
-    private Integer lineNumber;
-    private ACLi.Condition condition;
-    private ACLi.Result result;
+    private final Set<ACLLine> aclLines;
 
     public AccessControlList(Integer aclID) {
         this.aclID = aclID;
+        this.aclLines = new TreeSet<>(Comparator.comparing(ACLLine::getLineNumber));
     }
 
     public Integer getAclID() {
         return aclID;
     }
 
-    public Integer getLineNumber() {
-        return lineNumber;
+    public Set<ACLLine> getAclLines() {
+        return new HashSet<>(aclLines);
     }
 
-    public void setLineNumber(Integer lineNumber) {
-        this.lineNumber = lineNumber;
-    }
-
-    public ACLi.Condition getCondition() {
-        return condition;
-    }
-
-    public void setCondition(ACLi.Condition condition) {
-        this.condition = condition;
-    }
-
-    public ACLi.Result getResult() {
-        return result;
-    }
-
-    public void setResult(ACLi.Result result) {
-        this.result = result;
+    public void addLine(ACLLine line) {
+        aclLines.add(line);
     }
 
     @Override
@@ -48,11 +33,11 @@ public class AccessControlList {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccessControlList that = (AccessControlList) o;
-        return Objects.equals(aclID, that.aclID) && Objects.equals(lineNumber, that.lineNumber) && Objects.equals(condition, that.condition) && result == that.result;
+        return Objects.equals(aclID, that.aclID) && Objects.equals(aclLines, that.aclLines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(aclID, lineNumber, condition, result);
+        return Objects.hash(aclID, aclLines);
     }
 }
