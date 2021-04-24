@@ -71,10 +71,19 @@ public class ConditionMatcher {
     }
 
     private boolean matchProtocol() {
+        if (condition.getProtocol() == Datagram.Protocol.ANY) {
+            return true;
+        }
         return datagram.getProtocol() == condition.getProtocol();
     }
 
     private boolean matchFlag() {
+        if (condition.getFlag() == Datagram.Flag.ANY) {
+            return true;
+        }
+        if (condition.getFlag() == Datagram.Flag.NON) {
+            return false;
+        }
         return datagram.getFlags().contains(condition.getFlag());
     }
 }

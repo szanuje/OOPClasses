@@ -4,8 +4,6 @@ import interfaces.ACLi;
 import interfaces.Datagram;
 import keystore.KeyStoreManager;
 
-import java.util.Set;
-
 public class ConditionFactory {
 
     public ACLi.Condition createAnd(ACLi.Condition condition1, ACLi.Condition condition2) {
@@ -22,7 +20,6 @@ public class ConditionFactory {
 
     public ACLi.Condition createDefault(Integer sourceGroupID, Integer destinationGroupID,
                                         Datagram.Protocol protocol, Datagram.Flag flag, KeyStoreManager keyStoreManager) {
-        return new DefaultCondition(
-                Set.of(sourceGroupID), Set.of(destinationGroupID), protocol, Set.of(flag), keyStoreManager);
+        return new DefaultCondition(sourceGroupID, destinationGroupID, protocol, flag, keyStoreManager);
     }
 }

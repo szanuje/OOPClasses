@@ -41,6 +41,9 @@ public class Network implements NetworkObserver {
                     return;
                 }
             }
+            if (hostAddress.charAt(i) != netID.charAt(i)) {
+                return;
+            }
         }
     }
 
