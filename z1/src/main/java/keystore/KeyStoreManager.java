@@ -56,5 +56,4 @@ public class KeyStoreManager {
     public void notifyNetworkObservers(Host host) {
         networkKeyStore.getAll().values().forEach(net -> net.update(host));
     }
-
 }

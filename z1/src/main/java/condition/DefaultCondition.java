@@ -4,8 +4,9 @@ import interfaces.ACLi;
 import interfaces.Datagram;
 import keystore.KeyStoreManager;
 
-public class DefaultCondition implements ACLi.Condition {
+import java.util.Objects;
 
+public class DefaultCondition implements ACLi.Condition {
 
     private final Integer sourceGroupId;
     private final Integer destGroupId;
@@ -13,12 +14,13 @@ public class DefaultCondition implements ACLi.Condition {
     private final Datagram.Flag flag;
     private final KeyStoreManager keyStoreManager;
 
-    public DefaultCondition(Integer sourceGroupId, Integer destGroupId, Datagram.Protocol protocol, Datagram.Flag flag, KeyStoreManager keyStoreManager) {
-        this.sourceGroupId = sourceGroupId;
-        this.destGroupId = destGroupId;
-        this.protocol = protocol;
-        this.flag = flag;
-        this.keyStoreManager = keyStoreManager;
+    DefaultCondition(Integer sourceGroupId, Integer destGroupId, Datagram.Protocol protocol,
+                     Datagram.Flag flag, KeyStoreManager keyStoreManager) {
+        this.sourceGroupId = Objects.requireNonNull(sourceGroupId);
+        this.destGroupId = Objects.requireNonNull(destGroupId);
+        this.protocol = Objects.requireNonNull(protocol);
+        this.flag = Objects.requireNonNull(flag);
+        this.keyStoreManager = Objects.requireNonNull(keyStoreManager);
     }
 
     public Integer getSourceGroupId() {
@@ -35,10 +37,6 @@ public class DefaultCondition implements ACLi.Condition {
 
     public Datagram.Flag getFlag() {
         return flag;
-    }
-
-    public KeyStoreManager getKeyStoreManager() {
-        return keyStoreManager;
     }
 
     @Override

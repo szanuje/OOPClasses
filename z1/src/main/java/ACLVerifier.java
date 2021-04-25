@@ -12,7 +12,6 @@ public class ACLVerifier {
     }
 
     public static ACLi.Result verify(AccessControlList acl, Datagram datagram) {
-
         Collection<ACLLine> lines = acl.getAclLines();
         if (lines.stream().allMatch(line -> line.getResult() == line.test(datagram))) {
             return ACLi.Result.ALLOW;

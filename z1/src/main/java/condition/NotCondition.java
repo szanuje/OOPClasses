@@ -3,12 +3,14 @@ package condition;
 import interfaces.ACLi;
 import interfaces.Datagram;
 
+import java.util.Objects;
+
 public class NotCondition implements ACLi.Condition {
 
     ACLi.Condition condition;
 
-    public NotCondition(ACLi.Condition condition) {
-        this.condition = condition;
+    NotCondition(ACLi.Condition condition) {
+        this.condition = Objects.requireNonNull(condition);
     }
 
     @Override

@@ -29,8 +29,8 @@ class ConditionMatcherTest {
         Datagram datagram = new DefaultDatagram(
                 "192.168.1.1",
                 "192.168.1.2",
-                Datagram.Protocol.ANY,
-                Set.of(Datagram.Flag.ANY)
+                Datagram.Protocol.TCP,
+                Set.of(Datagram.Flag.ACL)
         );
 
         ACLi.Condition condition = acl.newCondition(groupID1, groupID2, Datagram.Protocol.ANY, Datagram.Flag.ANY);
@@ -40,7 +40,7 @@ class ConditionMatcherTest {
     }
 
     @Test
-    void whenTestConditionGivenHostsThenMatch2() {
+    void whenTestConditionGivenHostsThenNotMatch() {
 
         // given
         ACL acl = new ACL();
@@ -58,7 +58,7 @@ class ConditionMatcherTest {
         Datagram datagram = new DefaultDatagram(
                 "192.168.1.1",
                 "192.168.1.2",
-                Datagram.Protocol.ANY,
+                Datagram.Protocol.UDP,
                 Set.of(Datagram.Flag.ACL)
         );
 
@@ -87,7 +87,7 @@ class ConditionMatcherTest {
         Datagram datagram = new DefaultDatagram(
                 "192.168.1.1",
                 "192.168.1.2",
-                Datagram.Protocol.ANY,
+                Datagram.Protocol.ICMP,
                 Set.of(Datagram.Flag.ACL, Datagram.Flag.RST)
         );
 
@@ -118,7 +118,7 @@ class ConditionMatcherTest {
         Datagram datagram = new DefaultDatagram(
                 "192.168.1.1",
                 "195.165.1.1",
-                Datagram.Protocol.ANY,
+                Datagram.Protocol.UDP,
                 Set.of(Datagram.Flag.ACL, Datagram.Flag.RST)
         );
 

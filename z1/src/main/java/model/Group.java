@@ -51,7 +51,8 @@ public class Group {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Group group = (Group) o;
-        return Objects.equals(id, group.id) && Objects.equals(networks, group.networks) && Objects.equals(hosts, group.hosts) && Objects.equals(groups, group.groups);
+        return Objects.equals(id, group.id) && Objects.equals(networks, group.networks) &&
+                Objects.equals(hosts, group.hosts) && Objects.equals(groups, group.groups);
     }
 
     @Override

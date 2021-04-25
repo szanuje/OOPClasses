@@ -2,6 +2,7 @@ package datagram;
 
 import interfaces.Datagram;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class DefaultDatagram implements Datagram {
@@ -12,12 +13,14 @@ public class DefaultDatagram implements Datagram {
     private final Set<Flag> flags;
 
     public DefaultDatagram(String sourceAddress, String destinationAddress, Protocol protocol, Set<Flag> flags) {
-        this.sourceAddress = sourceAddress;
-        this.destinationAddress = destinationAddress;
-        this.protocol = protocol;
-        this.flags = flags;
+        if (flags.contains(Flag.ANY) || protocol == Protocol.ANY) {
+            throw new IllegalStateException("Datagram cannot have flag " + Flag.ANY);
+        }
+        this.sourceAddress = Objects.requireNonNull(sourceAddress);
+        this.destinationAddress = Objects.requireNonNull(destinationAddress);
+        this.protocol = Objects.requireNonNull(protocol);
+        this.flags = Objects.requireNonNull(flags);
     }
-
 
     @Override
     public String getSourceAddress() {
@@ -38,5 +41,4 @@ public class DefaultDatagram implements Datagram {
     public Set<Flag> getFlags() {
         return flags;
     }
-
 }

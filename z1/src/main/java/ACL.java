@@ -52,7 +52,7 @@ public class ACL implements ACLi {
 
     @Override
     public void addGroupToGroup(Integer groupID, Integer subGroupID) {
-        keyStoreManager.getGroup(groupID).addGroup(keyStoreManager.getGroup(groupID));
+        keyStoreManager.getGroup(groupID).addGroup(keyStoreManager.getGroup(subGroupID));
     }
 
     @Override

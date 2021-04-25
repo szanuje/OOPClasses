@@ -61,7 +61,8 @@ public class Network implements NetworkObserver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Network network = (Network) o;
-        return Objects.equals(netID, network.netID) && Objects.equals(networkPrefixLength, network.networkPrefixLength) && Objects.equals(netName, network.netName) && Objects.equals(hosts, network.hosts);
+        return Objects.equals(netID, network.netID) && Objects.equals(networkPrefixLength, network.networkPrefixLength) &&
+                Objects.equals(netName, network.netName) && Objects.equals(hosts, network.hosts);
     }
 
     @Override
