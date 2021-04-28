@@ -119,10 +119,10 @@ class ConditionMatcherTest {
                 "192.168.1.1",
                 "195.165.1.1",
                 Datagram.Protocol.UDP,
-                Set.of(Datagram.Flag.ACL, Datagram.Flag.RST)
+                Set.of(Datagram.Flag.ACL, Datagram.Flag.NON)
         );
 
-        ACLi.Condition condition = acl.newCondition(groupID1, groupID2, Datagram.Protocol.ANY, Datagram.Flag.ANY);
+        ACLi.Condition condition = acl.newCondition(groupID1, groupID2, Datagram.Protocol.ANY, Datagram.Flag.NON);
 
         // then
         assertTrue(condition.match(datagram));

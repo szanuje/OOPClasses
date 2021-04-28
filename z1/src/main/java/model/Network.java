@@ -35,8 +35,8 @@ public class Network implements NetworkObserver {
 
     @Override
     public void update(Host host) {
-        List<Integer> hostAddress = Arrays.stream(host.getHostAddress().split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
-        List<Integer> netAddress = Arrays.stream(netID.split("\\.")).map(Integer::parseInt).collect(Collectors.toList());
+        List<String> hostAddress = Arrays.stream(host.getHostAddress().split("\\.")).collect(Collectors.toList());
+        List<String> netAddress = Arrays.stream(netID.split("\\.")).collect(Collectors.toList());
         int prefix = 0;
         if (networkPrefixLength == 8) prefix = 1;
         if (networkPrefixLength == 16) prefix = 2;

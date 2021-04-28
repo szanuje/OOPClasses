@@ -79,10 +79,10 @@ public class ConditionMatcher {
 
     private boolean matchFlag() {
         if (condition.getFlag() == Datagram.Flag.ANY) {
-            return true;
+            return !datagram.getFlags().contains(Datagram.Flag.NON);
         }
         if (condition.getFlag() == Datagram.Flag.NON) {
-            return false;
+            return datagram.getFlags().contains(Datagram.Flag.NON);
         }
         return datagram.getFlags().contains(condition.getFlag());
     }
