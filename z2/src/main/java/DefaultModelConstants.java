@@ -33,42 +33,42 @@ public class DefaultModelConstants implements ModelConstants {
 
     @Override
     public double getInitialLuciferinValue() {
-        return 0;
+        return initialLuciferinValue;
     }
 
     @Override
     public double getLuciferinEnhancementConstant() {
-        return 0;
+        return luciferinEnchancementConstant;
     }
 
     @Override
     public double getLuciferinDecayConstant() {
-        return 0;
+        return luciferinDecayConstant;
     }
 
     @Override
     public double getStepSize() {
-        return 0;
+        return stepSize;
     }
 
     @Override
     public double getMaximalSensorRange() {
-        return 0;
+        return maximalSensorRange;
     }
 
     @Override
     public double getBeta() {
-        return 0;
+        return beta;
     }
 
     @Override
     public double getInitialSensorRange() {
-        return 0;
+        return initialSensorRange;
     }
 
     @Override
     public double getDesiredNumberOfNeighbors() {
-        return 0;
+        return desiredNumberOfNeighbors;
     }
 
     public static ModelConstantsBuilder builder() {

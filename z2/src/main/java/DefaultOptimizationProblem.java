@@ -4,9 +4,15 @@ import java.util.List;
 
 public class DefaultOptimizationProblem implements OptimizationProblem {
 
+    private final int numberOfDimensions;
+
+    public DefaultOptimizationProblem(int numberOfDimensions) {
+        this.numberOfDimensions = numberOfDimensions;
+    }
+
     @Override
     public int getNumberOfDimensions() {
-        return 0;
+        return numberOfDimensions;
     }
 
     @Override
