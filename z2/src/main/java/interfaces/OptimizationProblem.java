@@ -9,14 +9,14 @@ public interface OptimizationProblem {
 	public interface Interval {
 		/**
 		 * Wartość minimalna przedziału liczbowego
-		 * 
+		 *
 		 * @return wartość minimalna
 		 */
 		public double getMin();
 
 		/**
 		 * Wartość maksymalna przedziału liczbowego
-		 * 
+		 *
 		 * @return wartość maksymalna
 		 */
 		public double getMax();
@@ -24,14 +24,14 @@ public interface OptimizationProblem {
 
 	/**
 	 * Liczba wymiarów
-	 * 
+	 *
 	 * @return liczba wymiarów
 	 */
 	public int getNumberOfDimensions();
 
 	/**
 	 * Obszar, w którym poszukowane jest rozwiązanie. Jest nim hipersześcian.
-	 * 
+	 *
 	 * @return przeszukiwany obszar
 	 */
 	public List<Interval> getSearchArea();
@@ -40,7 +40,7 @@ public interface OptimizationProblem {
 	 * Wartość funkcji w N-wymiarowym punkcie position. W przypadku błędnego
 	 * wywołania (błędna liczba wymiarów, punkt spoza obszaru przeszukowania wartość
 	 * funkcji może być dowolna).
-	 * 
+	 *
 	 * @param position położenie, w którym wyliczana jest funkcja
 	 * @return wartość funkcji.
 	 */
