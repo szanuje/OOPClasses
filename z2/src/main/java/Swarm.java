@@ -5,7 +5,7 @@ import interfaces.SwarmOptimization;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class DefaultSwarmOptimization implements SwarmOptimization {
+public class Swarm implements SwarmOptimization {
 
     private ModelConstants modelConstants;
     private OptimizationProblem optimizationProblem;
