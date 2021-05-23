@@ -60,15 +60,16 @@ public class AgentOperations {
     }
 
     public List<Double> getRandomNextPos(Agent agent) {
-        List<Double> positions = agent.getPosition();
-        int dimensionIdxToModify = new Random().nextInt(agent.getPosition().size());
-        Integer direction = new Random().nextDouble() - 0.5 > 0 ?
-                1 : -1;
-        positions.set(dimensionIdxToModify, positions.get(dimensionIdxToModify) + direction);
-        OptimizationProblem.Interval bounds = optimizationProblem.getSearchArea().get(dimensionIdxToModify);
-        double calibratedPos = getCalibratedPosition(positions.get(dimensionIdxToModify), bounds);
-        positions.set(dimensionIdxToModify, calibratedPos);
-        return positions;
+        Random r = new Random();
+        List<Double> suggestedPos = agent.getPosition().stream()
+                .map(pos -> pos += (2. * r.nextDouble() - 1) * modelConstants.getStepSize())
+                .collect(Collectors.toList());
+        for (int i = 0; i < suggestedPos.size(); i++) {
+            OptimizationProblem.Interval bounds = optimizationProblem.getSearchArea().get(i);
+            double calibratedPos = getCalibratedPosition(suggestedPos.get(i), bounds);
+            suggestedPos.set(i, calibratedPos);
+        }
+        return suggestedPos;
     }
 
     public Double getNextRange(Agent agent, int numOfNeighbors) {
