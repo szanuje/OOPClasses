@@ -130,10 +130,10 @@ public class AgentOperations {
         return nextPos;
     }
 
-    private List<Double> getVectorBetweenAgents(List<Double> agent1, List<Double> agent2) {
+    private List<Double> getVectorBetweenAgents(List<Double> agent1pos, List<Double> agent2pos) {
         List<Double> eachDimensionDistance = new ArrayList<>();
-        for (int k = 0; k < agent1.size(); k++) {
-            eachDimensionDistance.add(agent2.get(k) - agent1.get(k));
+        for (int k = 0; k < agent1pos.size(); k++) {
+            eachDimensionDistance.add(agent2pos.get(k) - agent1pos.get(k));
         }
         return eachDimensionDistance;
     }

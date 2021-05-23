@@ -1,9 +1,15 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateUtils {
     
-    private List<List<Double>> updatedPositions;
-    private List<Double> updatedRanges;
+    private final List<List<Double>> updatedPositions;
+    private final List<Double> updatedRanges;
+
+    public UpdateUtils() {
+        this.updatedPositions = new ArrayList<>();
+        this.updatedRanges = new ArrayList<>();
+    }
 
     public void addNextPos(List<Double> nextPos) {
         updatedPositions.add(nextPos);
