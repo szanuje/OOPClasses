@@ -5,6 +5,7 @@ import keystore.KeyStoreManager;
 import model.Group;
 import model.Host;
 import model.Network;
+import utils.NetworkUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,6 @@ public class ConditionMatcher {
         if (foundGroups.isEmpty()) {
             return;
         }
-        groupsList.addAll(foundGroups);
         foundGroups.forEach(g -> extractGroupsIds(g, groupsList));
     }
 
@@ -63,7 +63,7 @@ public class ConditionMatcher {
     }
 
     private boolean networkHasAddress(Network network, String address) {
-        return network.getHosts().stream().anyMatch(host -> hostHasAddress(host, address));
+        return NetworkUtils.isAddressInNetwork(network, address);
     }
 
     private boolean hostHasAddress(Host host, String address) {

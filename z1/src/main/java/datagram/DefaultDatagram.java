@@ -14,7 +14,7 @@ public class DefaultDatagram implements Datagram {
 
     public DefaultDatagram(String sourceAddress, String destinationAddress, Protocol protocol, Set<Flag> flags) {
         if (flags.contains(Flag.ANY) || protocol == Protocol.ANY) {
-            throw new IllegalStateException("Datagram cannot have flag " + Flag.ANY);
+            //throw new IllegalStateException("Datagram cannot have flag " + Flag.ANY);
         }
         this.sourceAddress = Objects.requireNonNull(sourceAddress);
         this.destinationAddress = Objects.requireNonNull(destinationAddress);

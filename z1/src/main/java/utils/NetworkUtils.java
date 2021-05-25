@@ -1,6 +1,5 @@
 package utils;
 
-import model.Host;
 import model.Network;
 
 import java.util.Arrays;
@@ -13,11 +12,11 @@ public class NetworkUtils {
         //
     }
 
-    public static boolean isHostInNetwork(Network network, Host host) {
+    public static boolean isAddressInNetwork(Network network, String address) {
         int networkPrefixLength = network.getNetworkPrefixLength();
         int prefix = 0;
 
-        List<String> hostAddress = Arrays.stream(host.getHostAddress().split("\\.")).collect(Collectors.toList());
+        List<String> hostAddress = Arrays.stream(address.split("\\.")).collect(Collectors.toList());
         List<String> netAddress = Arrays.stream(network.getNetID().split("\\.")).collect(Collectors.toList());
         if (networkPrefixLength == 8) prefix = 1;
         if (networkPrefixLength == 16) prefix = 2;

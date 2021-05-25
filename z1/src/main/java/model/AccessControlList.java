@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Comparator;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -21,7 +21,7 @@ public class AccessControlList {
     }
 
     public Set<ACLLine> getAclLines() {
-        return new HashSet<>(aclLines);
+        return new LinkedHashSet<>(aclLines);
     }
 
     public void addLine(ACLLine line) {

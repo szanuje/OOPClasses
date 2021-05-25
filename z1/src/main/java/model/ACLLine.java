@@ -27,7 +27,7 @@ public class ACLLine {
         if (condition.match(datagram)) {
             return result;
         } else {
-            return ACLi.Result.DENY;
+            return null;
         }
     }
 }

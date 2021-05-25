@@ -13,10 +13,11 @@ public class ACLVerifier {
 
     public static ACLi.Result verify(AccessControlList acl, Datagram datagram) {
         Collection<ACLLine> lines = acl.getAclLines();
-        if (lines.stream().anyMatch(line -> line.getResult() == line.test(datagram))) {
-            return ACLi.Result.ALLOW;
-        } else {
-            return ACLi.Result.DENY;
+        for (ACLLine line : lines) {
+            if (line.getResult() == line.test(datagram)) {
+                return line.getResult();
+            }
         }
+        return ACLi.Result.DENY;
     }
 }
