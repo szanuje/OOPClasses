@@ -124,6 +124,9 @@ public class AgentOperations {
         List<Double> nextPos = new ArrayList<>(myPos);
         List<Double> vector = getVectorBetweenAgents(myPos, neighborPos);
         double vectorLength = getVectorLength(vector);
+        if(vectorLength == 0.0) {
+            return myPos;
+        }
         double actualStep = modelConstants.getStepSize() / vectorLength;
         for (int i = 0; i < vector.size(); i++) {
             nextPos.set(i, nextPos.get(i) + actualStep * vector.get(i));
