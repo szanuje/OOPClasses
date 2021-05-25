@@ -1,11 +1,10 @@
 package model;
 
-import java.util.Arrays;
+import utils.NetworkUtils;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Network implements NetworkObserver {
 
@@ -35,20 +34,8 @@ public class Network implements NetworkObserver {
 
     @Override
     public void update(Host host) {
-        List<String> hostAddress = Arrays.stream(host.getHostAddress().split("\\.")).collect(Collectors.toList());
-        List<String> netAddress = Arrays.stream(netID.split("\\.")).collect(Collectors.toList());
-        int prefix = 0;
-        if (networkPrefixLength == 8) prefix = 1;
-        if (networkPrefixLength == 16) prefix = 2;
-        if (networkPrefixLength == 24) prefix = 3;
-        for (int i = 0; i < 4; i++) {
-            if (!hostAddress.get(i).equals(netAddress.get(i))) {
-                return;
-            }
-            if (i + 1 >= prefix) {
-                hosts.add(host);
-                return;
-            }
+        if (NetworkUtils.isHostInNetwork(this, host)) {
+            hosts.add(host);
         }
     }
 
